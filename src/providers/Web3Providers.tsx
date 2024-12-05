@@ -1,16 +1,15 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
+import { PROJECT_ID } from '@/config/env'
+import { AnvilChain, config, LineaTestnet } from '@/config/network'
 import {
-  Mainnet,
   MetaMask,
   OkxWallet,
-  TokenPocket,
   WagmiWeb3ConfigProvider,
   WalletConnect,
 } from '@ant-design/web3-wagmi'
 import { QueryClient } from '@tanstack/react-query'
-import { http } from 'wagmi'
 
 const queryClient = new QueryClient()
 
@@ -21,21 +20,16 @@ function Web3Providers({ children }: PropsWithChildren) {
         autoAddInjectedWallets: true,
       }}
       ens
-      chains={[Mainnet]}
-      transports={{
-        [Mainnet.id]: http(),
-      }}
+      chains={[AnvilChain, LineaTestnet]}
       walletConnect={{
-        projectId: '',
+        projectId: PROJECT_ID,
       }}
       wallets={[
         MetaMask(),
         WalletConnect(),
-        TokenPocket({
-          group: 'Popular',
-        }),
         OkxWallet(),
       ]}
+      config={config}
       queryClient={queryClient}
     >
       {children}

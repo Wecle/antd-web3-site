@@ -3,6 +3,7 @@
     "incremental": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {

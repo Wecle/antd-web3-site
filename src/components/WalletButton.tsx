@@ -12,7 +12,7 @@ function WalletButton() {
         mode: 'simple',
       }}
     >
-      <ConnectButton quickConnect />
+      <ConnectButton />
     </Connector>
   )
 }
